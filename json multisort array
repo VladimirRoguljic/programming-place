@@ -17,7 +17,7 @@ foreach ($results[1] as $key=>$value) {
 
 array_multisort($result,SORT_ASC,$keys);
 
-$max="1";
+$max="0";
 
 foreach( $results as $key => $obj)
 {
