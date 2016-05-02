@@ -56,3 +56,4 @@ foreach( $results as $key => $obj)
 
 print_r($results);
 echo "Suma je $sum";
+?>
