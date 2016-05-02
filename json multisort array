@@ -1,0 +1,58 @@
+<?php
+$json = '
+
+  {"1":{"1":5,"2":9,"3":1,"4":8,"5":4,"6":3,"7":7,"8":2},"2":{"1":6,"2":2,"3":9,"4":9,"5":2,"6":2,"7":5,"8":6},"3":{"1":2,"2":4,"3":3,"4":5,"5":1,"6":4,"7":9,"8":3},"4":{"1":6,"2":3,"3":2,"4":4,"5":1,"6":9,"7":2,"8":6},"5":{"1":7,"2":4,"3":3,"4":9,"5":2,"6":7,"7":8,"8":7},"6":{"1":4,"2":1,"3":2,"4":9,"5":2,"6":8,"7":3,"8":5},"7":{"1":4,"2":1,"3":7,"4":9,"5":4,"6":1,"7":6,"8":7},"8":{"1":7,"2":6,"3":3,"4":1,"5":4,"6":6,"7":3,"8":7}}
+
+';
+
+$results = json_decode ($json,true);
+
+$keys = array_keys($results[1]);
+
+$result=array();
+
+foreach ($results[1] as $key=>$value) {
+    $result[$key] = $results[1][$key];
+}
+
+array_multisort($result,SORT_ASC,$keys);
+
+$max="1";
+
+foreach( $results as $key => $obj)
+{
+   foreach( $obj as $k => $v){
+  
+    $results[$key][$k] = $obj[$keys[$k-1]];
+      
+      if ($key != "1"){
+       
+            if ($results[$key][$k] > $max){
+           
+                      $max = $results[$key][$k];
+           }
+       }
+
+   }
+}
+
+$sum=0;
+
+foreach( $results as $key => $obj)
+{
+  foreach( $obj as $k => $v){
+
+          if ($key != "1"){
+       
+            if ($results[$key][$k] ==  $max){
+           
+                      $sum = $sum + $key + $k;
+           }
+       
+       }
+
+  }
+}
+
+print_r($results);
+echo "Suma je $sum";
